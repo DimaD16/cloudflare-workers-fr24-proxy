@@ -10,6 +10,9 @@ export default {
       });
     }
 
+    // Empêcher de fonctionner comme un relais ouvert
+    if (!new URL(targetUrl).hostname.endsWith("flightradar24.com")) return new Response("Forbidden", { status: 403 });
+
     // On récupère l'en-tête Accept de la requête originale, ou on met un truc par défaut
     const acceptHeader = request.headers.get("Accept") || "*/*";
 
